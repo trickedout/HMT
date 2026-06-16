@@ -1,0 +1,89 @@
+extends: default.yaml
+
+mode: hmt_webarena
+
+webarena:
+  # Fixed task-order file. JSONL records may either contain the full task config
+  # or refer to task configs by config_file/path.
+  task_order_path: ${HMT_WEBARENA_TASK_ORDER}
+  task_config_dir: ${HMT_WEBARENA_TASK_CONFIG_DIR}
+  auth_folder: ${HMT_WEBARENA_AUTH_FOLDER}
+  env_backend: browsergym  # browsergym or native
+  env_id_template: browsergym/webarena.{task_id}
+  output_dir: outputs/webarena
+  memory_reset_per_domain: true
+  insert_success_only: true
+  use_llm_construction: true
+  use_llm_inference: true
+  max_steps: 30
+  max_tasks: null
+  viewport_width: 1280
+  viewport_height: 720
+  headless: true
+  stop_action_keyword: stop
+  server_urls:
+    shopping: ${HMT_WEBARENA_SHOPPING_URL}
+    shopping_admin: ${HMT_WEBARENA_ADMIN_URL}
+    reddit: ${HMT_WEBARENA_REDDIT_URL}
+    gitlab: ${HMT_WEBARENA_GITLAB_URL}
+    maps: ${HMT_WEBARENA_MAPS_URL}
+    cms: ${HMT_WEBARENA_CMS_URL}
+
+llm:
+  provider: openai
+  model: gpt-4-0613
+  temperature: 0
+  max_retries: 3
+  request_timeout: 120
+  cache_path: null
+  replay_cache: false
+  write_cache: true
+
+embedding:
+  provider: transformers
+  model: Qwen/Qwen3-Embedding-0.6B
+  normalize: true
+  pooling: last_token
+  device: null
+  dtype: auto
+  trust_remote_code: true
+  local_files_only: false
+  max_length: 8192
+  batch_size: 8
+
+reranker:
+  provider: transformers_cross_encoder
+  model: Qwen/Qwen3-Reranker-0.6B
+  device: null
+  dtype: auto
+  trust_remote_code: true
+  local_files_only: false
+  max_length: 8192
+  batch_size: 8
+  score_activation: identity
+
+retrieval:
+  backend: qwen
+  allow_model_fallback: false
+  task_top_k: 5
+  stage_top_k: 8
+  action_top_k: 5
+  condition_weight_lambda: 0.3
+  fallback_margin_delta: 0.1
+  fallback_abs_confidence_tau: 0.15
+  history_truncation: 6
+  max_salient_elements: 30
+
+memory:
+  path: null
+
+inference:
+  mode: hmt
+  use_llm_normalizer: true
+  use_llm_planner: true
+  use_llm_actor: true
+  use_base_policy: true
+  fallback_to_base_on_low_confidence: true
+  planner_expand_multiplier: 2
+  action_expand_multiplier: 3
+  return_debug: true

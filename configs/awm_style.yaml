@@ -1,0 +1,7 @@
+extends: default.yaml
+mode: awm_style
+baseline:
+  name: awm_style
+  memory_unit: linear_workflow
+  use_hmt_stage_verification: false
+  use_hmt_semantic_grounding: false

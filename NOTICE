@@ -1,0 +1,13 @@
+HMT: Hierarchical Memory Tree for Web Agents
+
+This repository contains an HMT implementation and lightweight adapters for web-agent benchmarks.
+It includes:
+
+- hierarchical intent-stage-action memory records;
+- condition-aware stage selection;
+- semantic action descriptors that avoid transferable source-site IDs;
+- DOM/accessibility preprocessing for observation summaries;
+- Mind2Web and WebArena entry points;
+- GPT-4 prompt templates and local Qwen embedding/reranking adapters.
+
+No benchmark data, API keys, WebArena credentials, or private server URLs are included.

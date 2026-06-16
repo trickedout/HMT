@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HMTActionNode",
+  "type": "object",
+  "required": [
+    "operation",
+    "semantic_description"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "record_type": {
+      "const": "action"
+    },
+    "format_version": {
+      "type": "string"
+    },
+    "action_id": {
+      "type": "string"
+    },
+    "parent_stage_id": {
+      "type": "string"
+    },
+    "operation": {
+      "enum": [
+        "click",
+        "type",
+        "select",
+        "hover",
+        "press",
+        "stop"
+      ]
+    },
+    "argument_template": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Concrete value or slot placeholder such as {origin_city}."
+    },
+    "semantic_description": {
+      "type": "object",
+      "required": [
+        "role",
+        "label_or_text"
+      ],
+      "additionalProperties": false,
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "backend_node_id"
+            ]
+          },
+          {
+            "required": [
+              "node_id"
+            ]
+          },
+          {
+            "required": [
+              "raw_node_id"
+            ]
+          },
+          {
+            "required": [
+              "css_selector"
+            ]
+          },
+          {
+            "required": [
+              "selector"
+            ]
+          },
+          {
+            "required": [
+              "xpath"
+            ]
+          },
+          {
+            "required": [
+              "absolute_coordinates"
+            ]
+          },
+          {
+            "required": [
+              "coordinates"
+            ]
+          },
+          {
+            "required": [
+              "bbox"
+            ]
+          },
+          {
+            "required": [
+              "dom_path"
+            ]
+          },
+          {
+            "required": [
+              "candidate_id"
+            ]
+          },
+          {
+            "required": [
+              "data_reactid"
+            ]
+          }
+        ]
+      },
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "Accessibility or semantic role."
+        },
+        "label_or_text": {
+          "type": "string"
+        },
+        "accessible_name": {
+          "type": "string"
+        },
+        "element_purpose": {
+          "type": "string"
+        },
+        "parent_context": {
+          "type": "string"
+        },
+        "sibling_context": {
+          "type": "string"
+        },
+        "nearby_text": {
+          "type": "string"
+        },
+        "form_section": {
+          "type": "string"
+        },
+        "relative_position": {
+          "type": "string"
+        },
+        "value_source": {
+          "type": "string",
+          "enum": [
+            "instruction_slot",
+            "page_text",
+            "fixed_ui_label",
+            "computed_answer",
+            "none",
+            "unknown"
+          ]
+        },
+        "input_value_type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "date",
+            "number",
+            "option",
+            "boolean",
+            "answer",
+            "none",
+            "unknown"
+          ]
+        },
+        "field_slot": {
+          "type": "string"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "current_value_semantics": {
+          "type": "string"
+        },
+        "expected_state_change": {
+          "type": "string"
+        },
+        "disambiguators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "negative_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grounding_priority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "transfer_note": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "type": "object"
+    },
+    "source_debug": {
+      "type": "object"
+    }
+  }
+}

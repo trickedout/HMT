@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HMTStageNode",
+  "type": "object",
+  "required": [
+    "name",
+    "span",
+    "pre_conditions",
+    "post_conditions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "record_type": {
+      "const": "stage"
+    },
+    "format_version": {
+      "type": "string"
+    },
+    "stage_id": {
+      "type": "string"
+    },
+    "parent_intent_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "span": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "integer"
+      }
+    },
+    "pre_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "post_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stage_type": {
+      "type": "string",
+      "enum": [
+        "navigation",
+        "constraint_entry",
+        "form_filling",
+        "option_selection",
+        "filtering",
+        "verification",
+        "answer_extraction",
+        "submission",
+        "state_transition",
+        "repaired_stage",
+        "other"
+      ]
+    },
+    "transfer_rationale": {
+      "type": "string"
+    },
+    "completion_signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "failure_or_retry_cues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "negative_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_steps": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "source": {
+      "type": "object"
+    },
+    "source_debug": {
+      "type": "object"
+    }
+  }
+}

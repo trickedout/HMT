@@ -1,0 +1,6 @@
+extends: default.yaml
+mode: flat_retrieval
+baseline:
+  name: flat_retrieval
+  use_hierarchy: false
+  use_stage_conditions: false

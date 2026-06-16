@@ -1,0 +1,8 @@
+extends: default.yaml
+mode: hmt
+dataset:
+  name: mind2web
+  mind2web_path: null
+  split_counts: outputs/results/mind2web_counts.json
+memory:
+  path: examples/webarena/hmt_memory_task1.jsonl

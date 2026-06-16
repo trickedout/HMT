@@ -1,0 +1,10 @@
+extends: default.yaml
+mode: hmt
+webarena:
+  task_order_path: null
+  memory_reset_per_domain: true
+  insert_success_only: true
+  server_urls: {}
+  counts: outputs/results/webarena_counts_single_site.json
+memory:
+  path: examples/webarena/hmt_memory_task1.jsonl

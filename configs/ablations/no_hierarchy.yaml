@@ -1,0 +1,7 @@
+extends: ../default.yaml
+mode: hmt_ablation
+ablation:
+  name: no_hierarchy
+  use_intent_level: false
+  use_stage_level: false
+  use_action_level: true

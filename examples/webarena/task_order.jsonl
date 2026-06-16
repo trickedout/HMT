@@ -1,0 +1,2 @@
+{"task_id":"1","domain":"reddit","config_file":"examples/webarena/1.json","intent":"tell me all subreddits starting with character 'a'","sites":["reddit"]}
+{"task_id":"2","domain":"misc","config_file":"examples/webarena/2.json","intent":"Check out the classification section","sites":["misc"]}

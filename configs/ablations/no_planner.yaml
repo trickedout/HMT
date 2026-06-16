@@ -1,0 +1,5 @@
+extends: ../default.yaml
+mode: hmt_ablation
+ablation:
+  name: no_planner
+  use_planner: false

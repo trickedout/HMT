@@ -1,0 +1,61 @@
+llm:
+  provider: openai
+  model: gpt-4-0613
+  temperature: 0
+  max_retries: 3
+  request_timeout: 120
+  cache_path: null
+  replay_cache: false
+  write_cache: true
+  pricing_usd_per_million_tokens:
+    input: null
+    output: null
+
+embedding:
+  provider: transformers
+  model: Qwen/Qwen3-Embedding-0.6B
+  normalize: true
+  pooling: last_token
+  device: null
+  dtype: auto
+  trust_remote_code: true
+  local_files_only: false
+  max_length: 8192
+  batch_size: 8
+
+reranker:
+  provider: transformers_cross_encoder
+  model: Qwen/Qwen3-Reranker-0.6B
+
+random_seed: 3407
+
+retrieval:
+  backend: qwen
+  allow_model_fallback: false
+  task_top_k: 5
+  stage_top_k: 8
+  action_top_k: 5
+  condition_weight_lambda: 0.3
+  fallback_margin_delta: 0.1
+  fallback_abs_confidence_tau: 0.15
+  history_truncation: 6
+  max_salient_elements: 30
+
+condition_matching:
+  theta_pre: 0.20
+  theta_post_done: 0.25
+  theta_conflict: 0.10
+
+inference:
+  mode: deterministic_fallback
+  use_llm_normalizer: true
+  use_llm_planner: false
+  use_llm_actor: false
+  use_base_policy: true
+  fallback_to_base_on_low_confidence: true
+  planner_expand_multiplier: 2
+  action_expand_multiplier: 3
+  return_debug: true
+
+memory:
+  path: examples/webarena/hmt_memory_task1.jsonl

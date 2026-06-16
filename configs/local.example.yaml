@@ -1,0 +1,45 @@
+extends: default.yaml
+
+# Copy this file to configs/local.yaml and fill in machine-specific paths,
+# service URLs, and credentials. Keep configs/local.yaml out of version control.
+# GPT-4 uses OPENAI_API_KEY from the environment. Qwen models are loaded locally
+# through transformers and do not use an API key.
+
+dataset:
+  name: mind2web
+  mind2web_path: ${HMT_MIND2WEB_SPLIT_PATH}
+  mind2web_train_path: ${HMT_MIND2WEB_TRAIN_PATH}
+
+mind2web:
+  train_path: ${HMT_MIND2WEB_TRAIN_PATH}
+  cross_task_path: ${HMT_MIND2WEB_CROSS_TASK_PATH}
+  cross_website_path: ${HMT_MIND2WEB_CROSS_WEBSITE_PATH}
+  cross_domain_path: ${HMT_MIND2WEB_CROSS_DOMAIN_PATH}
+  output_dir: outputs/mind2web
+
+webarena:
+  task_order_path: ${HMT_WEBARENA_TASK_ORDER}
+  task_config_dir: ${HMT_WEBARENA_TASK_CONFIG_DIR}
+  auth_folder: ${HMT_WEBARENA_AUTH_FOLDER}
+  env_backend: browsergym
+  env_id_template: browsergym/webarena.{task_id}
+  memory_reset_per_domain: true
+  insert_success_only: true
+  server_urls:
+    shopping: ${HMT_WEBARENA_SHOPPING_URL}
+    shopping_admin: ${HMT_WEBARENA_ADMIN_URL}
+    reddit: ${HMT_WEBARENA_REDDIT_URL}
+    gitlab: ${HMT_WEBARENA_GITLAB_URL}
+    maps: ${HMT_WEBARENA_MAPS_URL}
+    cms: ${HMT_WEBARENA_CMS_URL}
+
+memory:
+  path: outputs/mind2web/T_mem_mind2web_train.jsonl
+
+inference:
+  mode: hmt
+  use_llm_normalizer: true
+  use_llm_planner: false
+  use_llm_actor: false
+  use_base_policy: true
+  fallback_to_base_on_low_confidence: true

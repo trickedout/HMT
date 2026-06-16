@@ -1,0 +1,78 @@
+extends: default.yaml
+
+mode: hmt_mind2web
+
+dataset:
+  name: mind2web
+  # Can be a directory of original Mind2Web JSON files, a single JSON file, or JSONL.
+  mind2web_path: ${HMT_MIND2WEB_SPLIT_PATH}
+  mind2web_train_path: ${HMT_MIND2WEB_TRAIN_PATH}
+
+mind2web:
+  train_path: ${HMT_MIND2WEB_TRAIN_PATH}
+  cross_task_path: ${HMT_MIND2WEB_CROSS_TASK_PATH}
+  cross_website_path: ${HMT_MIND2WEB_CROSS_WEBSITE_PATH}
+  cross_domain_path: ${HMT_MIND2WEB_CROSS_DOMAIN_PATH}
+  output_dir: outputs/mind2web
+  use_llm_construction: true
+  use_llm_inference: true
+  max_tasks: null
+
+llm:
+  provider: openai
+  model: gpt-4-0613
+  temperature: 0
+  max_retries: 3
+  request_timeout: 120
+  cache_path: null
+  replay_cache: false
+  write_cache: true
+
+embedding:
+  provider: transformers
+  model: Qwen/Qwen3-Embedding-0.6B
+  normalize: true
+  pooling: last_token
+  device: null
+  dtype: auto
+  trust_remote_code: true
+  local_files_only: false
+  max_length: 8192
+  batch_size: 8
+
+reranker:
+  provider: transformers_cross_encoder
+  model: Qwen/Qwen3-Reranker-0.6B
+  device: null
+  dtype: auto
+  trust_remote_code: true
+  local_files_only: false
+  max_length: 8192
+  batch_size: 8
+  score_activation: identity
+
+retrieval:
+  backend: qwen
+  allow_model_fallback: false
+  task_top_k: 5
+  stage_top_k: 8
+  action_top_k: 5
+  condition_weight_lambda: 0.3
+  fallback_margin_delta: 0.1
+  fallback_abs_confidence_tau: 0.15
+  history_truncation: 6
+  max_salient_elements: 30
+
+memory:
+  path: outputs/mind2web/T_mem_mind2web_train.jsonl
+
+inference:
+  mode: hmt
+  use_llm_normalizer: true
+  use_llm_planner: true
+  use_llm_actor: true
+  use_base_policy: true
+  fallback_to_base_on_low_confidence: true
+  planner_expand_multiplier: 2
+  action_expand_multiplier: 3
+  return_debug: true

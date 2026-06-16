@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlannerOutput",
+  "type": "object",
+  "required": [
+    "selected_stage_id",
+    "confidence",
+    "precondition_evidence",
+    "postcondition_evidence",
+    "low_confidence",
+    "reason"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "selected_stage_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "precondition_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "postcondition_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "low_confidence": {
+      "type": "boolean"
+    },
+    "stage_status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "already_complete",
+        "blocked",
+        "conflicting",
+        "ambiguous",
+        "task_complete",
+        "no_candidate",
+        "unknown"
+      ]
+    },
+    "candidate_assessment": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "stage_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "precondition_status": {
+            "type": "string"
+          },
+          "postcondition_status": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reason": {
+      "type": "string"
+    },
+    "stage_order_note": {
+      "type": "string"
+    },
+    "conflict_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completion_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fallback_recommended": {
+      "type": "boolean"
+    },
+    "fallback_reason": {
+      "type": "string"
+    }
+  }
+}

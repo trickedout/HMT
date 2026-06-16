@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HMTMemoryRecord",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "record_type",
+        "intent_id",
+        "canonical_intent"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "intent"
+        }
+      },
+      "additionalProperties": true
+    },
+    {
+      "type": "object",
+      "required": [
+        "record_type",
+        "stage_id",
+        "parent_intent_id",
+        "name",
+        "span"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "stage"
+        }
+      },
+      "additionalProperties": true
+    },
+    {
+      "type": "object",
+      "required": [
+        "record_type",
+        "action_id",
+        "parent_stage_id",
+        "operation",
+        "semantic_description"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "action"
+        },
+        "semantic_description": {
+          "type": "object",
+          "required": [
+            "role",
+            "label_or_text"
+          ],
+          "additionalProperties": false,
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "backend_node_id"
+                ]
+              },
+              {
+                "required": [
+                  "node_id"
+                ]
+              },
+              {
+                "required": [
+                  "raw_node_id"
+                ]
+              },
+              {
+                "required": [
+                  "css_selector"
+                ]
+              },
+              {
+                "required": [
+                  "selector"
+                ]
+              },
+              {
+                "required": [
+                  "xpath"
+                ]
+              },
+              {
+                "required": [
+                  "absolute_coordinates"
+                ]
+              },
+              {
+                "required": [
+                  "coordinates"
+                ]
+              },
+              {
+                "required": [
+                  "bbox"
+                ]
+              },
+              {
+                "required": [
+                  "dom_path"
+                ]
+              },
+              {
+                "required": [
+                  "candidate_id"
+                ]
+              },
+              {
+                "required": [
+                  "data_reactid"
+                ]
+              }
+            ]
+          },
+          "properties": {
+            "role": {
+              "type": "string",
+              "description": "Accessibility or semantic role."
+            },
+            "label_or_text": {
+              "type": "string"
+            },
+            "accessible_name": {
+              "type": "string"
+            },
+            "element_purpose": {
+              "type": "string"
+            },
+            "parent_context": {
+              "type": "string"
+            },
+            "sibling_context": {
+              "type": "string"
+            },
+            "nearby_text": {
+              "type": "string"
+            },
+            "form_section": {
+              "type": "string"
+            },
+            "relative_position": {
+              "type": "string"
+            },
+            "value_source": {
+              "type": "string",
+              "enum": [
+                "instruction_slot",
+                "page_text",
+                "fixed_ui_label",
+                "computed_answer",
+                "none",
+                "unknown"
+              ]
+            },
+            "input_value_type": {
+              "type": "string",
+              "enum": [
+                "text",
+                "date",
+                "number",
+                "option",
+                "boolean",
+                "answer",
+                "none",
+                "unknown"
+              ]
+            },
+            "field_slot": {
+              "type": "string"
+            },
+            "placeholder": {
+              "type": "string"
+            },
+            "current_value_semantics": {
+              "type": "string"
+            },
+            "expected_state_change": {
+              "type": "string"
+            },
+            "disambiguators": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "negative_constraints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "grounding_priority": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "transfer_note": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  ]
+}

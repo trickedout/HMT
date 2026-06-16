@@ -1,0 +1,6 @@
+extends: ../default.yaml
+mode: hmt_ablation
+ablation:
+  name: no_prepost_conditions
+  use_pre_conditions: false
+  use_post_conditions: false

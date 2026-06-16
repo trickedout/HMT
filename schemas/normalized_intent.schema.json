@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NormalizedIntent",
+  "type": "object",
+  "required": [
+    "intent",
+    "constraints",
+    "domain_hint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "intent": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Website-independent canonical task goal."
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "slot",
+          "value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "slot": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Canonical slot name, e.g., origin_city, product_category, prefix."
+          },
+          "value": {
+            "type": "string",
+            "description": "Task value or 'unknown' if underspecified."
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Instruction span supporting this constraint."
+          },
+          "value_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "date",
+              "time",
+              "number",
+              "boolean",
+              "category",
+              "relation",
+              "answer_format",
+              "unknown"
+            ]
+          },
+          "is_task_variable": {
+            "type": "boolean"
+          },
+          "normalization_note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "negative_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Restrictions such as not selecting ads or unrelated sections."
+    },
+    "domain_hint": {
+      "type": "string",
+      "enum": [
+        "travel",
+        "shopping",
+        "forum",
+        "code",
+        "map",
+        "other"
+      ]
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "search",
+        "filter",
+        "configure",
+        "navigate",
+        "answer",
+        "create",
+        "edit",
+        "compare",
+        "checkout",
+        "other"
+      ]
+    },
+    "completion_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Observable conditions indicating task completion."
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

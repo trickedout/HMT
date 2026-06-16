@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hmt-web-agent"
+version = "0.1.0"
+description = "Hierarchical Memory Tree implementation for web agents."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "HMT Authors"}]
+dependencies = [
+    "numpy>=1.23",
+    "pyyaml>=6.0",
+    "tqdm>=4.65",
+    "beautifulsoup4>=4.12",
+    "lxml>=4.9",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+qwen = ["torch>=2.0", "transformers>=4.40", "accelerate>=0.24"]
+mind2web = ["datasets>=2.14"]
+webarena = ["browsergym>=0.10"]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+include = ["hmt*"]

@@ -1,0 +1,6 @@
+extends: ../default.yaml
+mode: hmt_ablation
+ablation:
+  name: raw_element_ids
+  warning: "For ablation only; raw element identifiers are not transferable HMT fields."
+  use_raw_element_ids: true

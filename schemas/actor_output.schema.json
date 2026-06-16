@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ActorOutput",
+  "type": "object",
+  "required": [
+    "operation",
+    "target_element_id",
+    "argument",
+    "confidence",
+    "matched_descriptor_fields",
+    "reason"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "operation": {
+      "enum": [
+        "click",
+        "type",
+        "select",
+        "hover",
+        "press",
+        "stop"
+      ]
+    },
+    "target_element_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "argument": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "matched_descriptor_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selected_action_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rejected_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "element_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reason": {
+      "type": "string"
+    },
+    "argument_source": {
+      "type": "string",
+      "enum": [
+        "instruction_constraint",
+        "action_template",
+        "page_text",
+        "none",
+        "unknown"
+      ],
+      "description": "Source used to fill argument."
+    },
+    "grounding_trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "selected_action_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "role_match": {
+          "type": "boolean"
+        },
+        "label_match": {
+          "type": "boolean"
+        },
+        "context_match": {
+          "type": "boolean"
+        },
+        "negative_constraints_satisfied": {
+          "type": "boolean"
+        },
+        "expected_state_change": {
+          "type": "string"
+        },
+        "ambiguity_note": {
+          "type": "string"
+        }
+      }
+    },
+    "safety_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Flags such as low_confidence, ambiguous_label, disabled_candidate, irreversible_action."
+    },
+    "next_state_expectation": {
+      "type": "string",
+      "description": "Observable state expected after executing this action."
+    }
+  }
+}

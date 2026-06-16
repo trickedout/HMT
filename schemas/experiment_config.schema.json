@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HMTConfig",
+  "type": "object",
+  "required": [
+    "llm",
+    "embedding",
+    "reranker",
+    "random_seed",
+    "retrieval",
+    "condition_matching"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "llm": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model",
+        "temperature"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "provider": {
+          "const": "openai"
+        },
+        "model": {
+          "type": "string"
+        },
+        "temperature": {
+          "type": "number"
+        },
+        "max_retries": {
+          "type": "integer"
+        },
+        "request_timeout": {
+          "type": "integer"
+        }
+      }
+    },
+    "embedding": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "provider": {
+          "const": "transformers"
+        },
+        "model": {
+          "type": "string"
+        },
+        "normalize": {
+          "type": "boolean"
+        }
+      }
+    },
+    "reranker": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        }
+      }
+    },
+    "random_seed": {
+      "type": "integer"
+    },
+    "retrieval": {
+      "type": "object"
+    },
+    "condition_matching": {
+      "type": "object"
+    },
+    "preprocessing": {
+      "type": "object"
+    },
+    "construction": {
+      "type": "object"
+    },
+    "inference": {
+      "type": "object"
+    },
+    "ablation": {
+      "type": "object"
+    }
+  }
+}

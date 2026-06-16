@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the HMT arXiv preprint and Agent Workflow Memory."
+title: "HMT: Hierarchical Memory Tree for Web Agents"
+authors:
+  - family-names: "Tan"
+    given-names: "Yunteng"
+  - family-names: "Gao"
+    given-names: "Zhi"
+  - family-names: "Wu"
+    given-names: "Xinxiao"
+url: "https://github.com/trickedout/HMT"
+repository-code: "https://github.com/trickedout/HMT"
+license: "Apache-2.0"
+preferred-citation:
+  type: generic
+  title: "Enhancing Web Agents with a Hierarchical Memory Tree"
+  authors:
+    - family-names: "Tan"
+      given-names: "Yunteng"
+    - family-names: "Gao"
+      given-names: "Zhi"
+    - family-names: "Wu"
+      given-names: "Xinxiao"
+  year: 2026
+  doi: "10.48550/arXiv.2603.07024"
+  url: "https://arxiv.org/abs/2603.07024"
+  identifiers:
+    - type: other
+      value: "arXiv:2603.07024"
+      description: "arXiv identifier"
+references:
+  - type: conference-paper
+    title: "Agent Workflow Memory"
+    authors:
+      - family-names: "Wang"
+        given-names: "Zhiruo"
+      - family-names: "Mao"
+        given-names: "Jiayuan"
+      - family-names: "Fried"
+        given-names: "Daniel"
+      - family-names: "Neubig"
+        given-names: "Graham"
+    year: 2024
+    url: "https://github.com/zorazrw/agent-workflow-memory/"
